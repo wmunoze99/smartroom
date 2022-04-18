@@ -1,0 +1,6 @@
+{
+  "watch": ["**/*"],
+  "ext": "ts, json",
+  "ignore": ["dist/*"],
+  "exec": "tsc --project ./ && node dist/index.js"
+}
