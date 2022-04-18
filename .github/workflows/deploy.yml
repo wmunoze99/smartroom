@@ -1,0 +1,47 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+    - run: yarn run build --if-present
+    - name: Heroku Docker Container Deploy
+  # You may pin to the exact commit or the version.
+  # uses: lucassarcanjo/heroku-deploy@1db4c62f6032efe526c12734f18d36669218e5af
+      uses: lucassarcanjo/heroku-deploy@2.1.17
+      with:
+        # Email Linked to your Heroku Account
+        email: "wilintonmunoz09@gmail.com"
+        # Heroku Dyno Formation
+        formation: "web"# optional, default is web
+        # Your Heroku API Key
+        api_key: "c00eae1e-9680-4381-8026-5b38e195fca4"
+        # Your Heroku App Name
+        app_name: "iotservices"
+        # Dokerfile path
+        dockerfile_path: "./"
+        # Optional build parameters
+        options: ""# optional
+    
