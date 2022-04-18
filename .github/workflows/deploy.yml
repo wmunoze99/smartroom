@@ -29,20 +29,7 @@ jobs:
     - run: yarn
     - run: yarn run build
     - name: Heroku Docker Container Deploy
-  # You may pin to the exact commit or the version.
-  # uses: lucassarcanjo/heroku-deploy@1db4c62f6032efe526c12734f18d36669218e5af
-      uses: lucassarcanjo/heroku-deploy@2.1.17
-      with:
-        # Email Linked to your Heroku Account
-        email: "wilintonmunoz09@gmail.com"
-        # Heroku Dyno Formation
-        formation: "web"# optional, default is web
-        # Your Heroku API Key
-        api_key: "66e76130-5438-4279-8402-aeda76f37be6"
-        # Your Heroku App Name
-        app_name: "iotservices"
-        # Dokerfile path
-        dockerfile_path: "./"
-        # Optional build parameters
-        options: ""# optional
+    - run: 66e76130-5438-4279-8402-aeda76f37be6 | docker login --username=wilintonmunoz09@gmail.com registry.heroku.com --password-stdin
+           build --tag registry.heroku.com/iotservices/web .
+           docker push registry.heroku.com/iotservices/web
     
