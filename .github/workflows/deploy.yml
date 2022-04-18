@@ -38,7 +38,7 @@ jobs:
         # Heroku Dyno Formation
         formation: "web"# optional, default is web
         # Your Heroku API Key
-        api_key: "c6737ba5-7acc-4d8b-9a36-e783153dcfe3"
+        api_key: "66e76130-5438-4279-8402-aeda76f37be6"
         # Your Heroku App Name
         app_name: "iotservices"
         # Dokerfile path
