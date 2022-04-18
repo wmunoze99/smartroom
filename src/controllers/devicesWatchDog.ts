@@ -1,4 +1,3 @@
-import schedule from 'node-schedule';
 import { authenticationController } from './devicesController';
 import axios from 'axios';
 import { Device } from '../models/device';
