@@ -28,7 +28,7 @@ jobs:
         cache: 'yarn'
     - run: yarn
     - run: yarn run build
-    - run: wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && dpkg -i cloudflared-linux-amd64.deb
+    - run: wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && sudo dpkg -i cloudflared-linux-amd64.deb
     - run: cat .ssh/config
 
     
