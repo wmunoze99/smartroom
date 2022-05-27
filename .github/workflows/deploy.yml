@@ -28,7 +28,13 @@ jobs:
         cache: 'yarn'
     - run: yarn
     - run: yarn run build
+    - name: Prepare ssh
+    - run: mkdir -p ~/.ssh/
     - run: wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && sudo dpkg -i cloudflared-linux-amd64.deb
-    - run: cat ~/.ssh/config
-
+    - run: echo "Host private.iottools.tk" > ~/.ssh/config
+    - run: echo "ProxyCommand /usr/local/bin/cloudflared access ssh --hostname %h" >> ~/.ssh/config
+    - name: Upload files to server
+      run: |
+        echo DEPLOY to ip ${{env.DEPLOY_SERVER}}
+        rsync -av -e "ssh -o StrictHostKeyChecking=no" --delete --exclude=".git/" --exclude=".github/" . pi@private.iottools.tk:~/action
     
