@@ -35,5 +35,5 @@ jobs:
     - run: echo "ProxyCommand /usr/local/bin/cloudflared access ssh --hostname %h" >> ~/.ssh/config
     - name: Upload files to server
       run: echo DEPLOY to ip 
-    - run: rsync -av -e "ssh -o StrictHostKeyChecking=no" --delete --exclude=".git/" --exclude=".github/" . pi@private.iottools.tk:~/action
+    - run: rsync -av -e "ssh --exclude=".git/" --exclude=".github/" . pi@private.iottools.tk:~/action
     
