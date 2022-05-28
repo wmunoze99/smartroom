@@ -30,9 +30,9 @@ jobs:
     - run: yarn run build
     - name: Prepare ssh
       run: mkdir -p ~/.ssh/
-    - run: echo ${{secrets.cloudflare-key}} > /etc/ssh/ca.pub
-    - run: echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
-    - run: echo "TrustedUserCAKeys /etc/ssh/ca.pub" >> /etc/ssh/sshd_config
+    - run: sudo echo ${{secrets.cloudflare-key}} > /etc/ssh/ca.pub
+    - run: sudo echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
+    - run: sudo echo "TrustedUserCAKeys /etc/ssh/ca.pub" >> /etc/ssh/sshd_config
     - run: sudo systemctl restart ssh
     - name: Upload files to server
       run: echo DEPLOY to ip
