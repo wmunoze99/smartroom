@@ -30,9 +30,11 @@ jobs:
     - run: yarn run build
     - name: Prepare ssh
       run: mkdir -p ~/.ssh/
-    - run: echo ${{secrets.cloudflare-key}} > ~/.ssh/id_rsa
+    - run: echo ${{secrets.cloudflare-key}} > /etc/ssh/ca.pub
+    - run: echo "PubkeyAuthentication yes" >> /etc/ssh/sshd_config
+    - run: echo "TrustedUserCAKeys /etc/ssh/ca.pub" >> /etc/ssh/sshd_config
+    - run: sudo systemctl restart ssh
     - name: Upload files to server
       run: echo DEPLOY to ip
-    - run: chmod 400 ~/.ssh/id_rsa
     - run: rsync -av -e ssh --exclude=".git/" --exclude=".github/" . pi@private.iottools.tk:~/action
     
