@@ -27,6 +27,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
+      - run: $USER
       - run: yarn
       - run: yarn run build
       - name: Prepare ssh
