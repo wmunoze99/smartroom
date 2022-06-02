@@ -30,7 +30,7 @@ jobs:
     - run: yarn run build
     - name: Prepare ssh
       run: mkdir -p ~/.ssh/
-    - run: echo ${{secrets.cloudflare-key}} | sudo tee /etc/ssh/ca.pub
+    - run: echo ${{secrets.CLOUDFLAREKEY}} | sudo tee /etc/ssh/ca.pub
     - run: echo "PubkeyAuthentication yes" | sudo tee -a /etc/ssh/sshd_config
     - run: echo "TrustedUserCAKeys /etc/ssh/ca.pub" | sudo tee -a /etc/ssh/sshd_config
     - run: sudo systemctl restart ssh
