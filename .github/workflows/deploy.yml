@@ -30,7 +30,6 @@ jobs:
     - run: yarn run build
     - name: Prepare ssh
       run: mkdir -p ~/.ssh/
-    - run: cat /etc/ssh/ca.pub
     - run: sudo echo ${{secrets.CLOUDFLAREKEY}} >> /etc/ssh/ca.pub
     - run: cat /etc/ssh/ca.pub
     - run: echo "PubkeyAuthentication yes" | sudo tee -a /etc/ssh/sshd_config
