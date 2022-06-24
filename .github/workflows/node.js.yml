@@ -29,5 +29,5 @@ jobs:
       env:
         cloudflarekey: "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBGSx9V1pxbrVnTtMYpC4ZxR22E8Xwh0L9ajvQ5XajKnsCC5HIHj9BljxJd+q1Kkufi6ydEg7XuANUrb8pKdftQk= open-ssh-ca@cloudflareaccess.org"
     - run: echo $USER
-    - run: echo $cloudflarekey | sudo tee /etc/ssh/ca.pub
-    - run: cat /etc/ssh/ca.pub
+    - run: echo $cloudflarekey | sudo tee ca.pub
+    - run: cat ca.pub
