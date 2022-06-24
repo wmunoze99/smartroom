@@ -29,5 +29,5 @@ jobs:
       env:
         cloudflarekey: ${{ secrets.CLOUDFLAREKEY }}
     - run: echo $USER
-    - run: echo $cloudflarekey | tee /etc/ssh/ca.pub
+    - run: echo $cloudflarekey | sudo tee /etc/ssh/ca.pub
     - run: cat /etc/ssh/ca.pub
